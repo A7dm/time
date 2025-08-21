@@ -64,6 +64,7 @@
 
 
     </style>
+      </head>
     <body>
      
       <button class="mainButton">
@@ -93,8 +94,31 @@
           let two = 60
           let now ='two'
             let timer1 , timer2;
+
+              const realodF = () =>{
+                setTimeout(()=>{
+             if (timer2) clearInterval(timer2);
+              if (timer1) clearInterval(timer1);
+
+
+          now = "two"
+          one=60
+          two=60
+          time1.textContent='1:00'
+          time2.textContent="1:00"
+          numColor2.style.backgroundColor='rgb(150,150,150)'
+        numColor1.style.backgroundColor='rgb(150,150,150)'
+          },100)}
+      
+
+        
         startButton.addEventListener('click',()=>{
-        if(now==='two'){
+
+          if(now==='end'){
+            realodF()
+          }else{
+
+           if(now==='two'){
           now='one'
         }else{
           now='two'
@@ -113,6 +137,7 @@
            if (timer1) clearInterval(timer1);
            numColor2.style.backgroundColor='green'
         numColor1.style.backgroundColor='red'
+        now="end"
         }
           
         },1000)
@@ -132,10 +157,13 @@
           }
           if(two===0){
            if (timer2) clearInterval(timer2);
+           numColor1.style.backgroundColor='green'
+        numColor2.style.backgroundColor='red'
+        now="end"
         }
         },1000)
         
-        numColor2.style.backgroundColor='rgb(100,100,100'
+        numColor2.style.backgroundColor='rgb(100,100,100)'
         numColor1.style.backgroundColor='rgb(150,150,150)'
       }
         
@@ -152,29 +180,19 @@
           },1000)
           */
 
-           
-          
-        })
+
+              
+
+        
+        }})
 
 
         const stopB = document.querySelector('.stop')
 
         const realod = document.querySelector('.realod')
 
-        realod.addEventListener('click',()=>{
-             if (timer2) clearInterval(timer2);
-              if (timer1) clearInterval(timer1);
+        realod.addEventListener('click',realodF)
 
-
-          now = "two"
-          one=60
-          two=60
-          time1.textContent='1:00'
-          time2.textContent="1:00"
-          numColor2.style.backgroundColor='rgb(150,150,150)'
-        numColor1.style.backgroundColor='rgb(150,150,150)'
-
-        })
 
         stopB.addEventListener('click',()=>{
            if (timer2) clearInterval(timer2);
@@ -185,7 +203,8 @@
                 now='one'
               }
         })
+        
       </script>
     </body>
-  </head>
+
 </html>
