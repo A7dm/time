@@ -1,0 +1,191 @@
+<!DOCTYPE html><html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+
+    <style>
+      .mainDiv , .mainButton{
+        height: 100vh;
+        width: 100%;
+      }
+      body{
+        background-color: black;
+      }
+      .mainButton{
+        background-color: black;
+        border:none;
+        display: flex;
+        flex-direction: row;
+       
+      align-items: center;
+      }
+
+
+
+      .time1{
+        font-size: 95px;
+      }
+
+      .mainDiv{
+        display: flex;
+          justify-content: center;
+        align-items: center;
+        text-align: center;
+       
+      }
+      .div-time1,.div-time2{
+        display: flex;
+        background-color: rgb(160, 160, 160);
+        text-align: center;
+        justify-content: center;
+        padding:0;
+        width:550px;
+
+      }
+
+      .buttonfun{
+        display: flex;
+        justify-content: center;
+        margin:0 auto;
+        align-items: center;
+        font-size: 45px;
+      }
+
+      .div-time2{
+        margin-right:15px;
+      }
+
+      .realod,.stop{
+        font-size: 40px;
+        margin-left:12px;
+        border-radius: 7px;
+        padding: 7px 25px;
+        cursor: pointer;
+      }
+
+
+    </style>
+    <body>
+     
+      <button class="mainButton">
+         <div class="mainDiv">
+        <div class="div-time1">
+         <p class="flex-one time1">1:00</p>
+         </div>
+         <div class="div-time2">
+         <p class="time1 flex-two">1:00</p>
+         </div>
+        </div>
+      </button>
+
+      <div class="buttonfun">
+      <button class="stop">إقاف</button>
+      <button class="realod">إعادة</button>
+      </div>
+
+      <script>
+        const numColor1 =document.querySelector('.div-time1') 
+        const numColor2 =document.querySelector('.div-time2') 
+        const startButton = document.querySelector('.mainButton')
+        const time1 = document.querySelector('.flex-one')
+        const time2 = document.querySelector('.flex-two')
+
+        let one = 60
+          let two = 60
+          let now ='two'
+            let timer1 , timer2;
+        startButton.addEventListener('click',()=>{
+        if(now==='two'){
+          now='one'
+        }else{
+          now='two'
+        }
+        
+
+          if(now==='one'){
+             if (timer2) clearInterval(timer2);
+              timer1 = setInterval(()=>{
+            if(now==="one"){
+              one-=1
+              time1.textContent=one
+          }
+
+          if(one===0){
+           if (timer1) clearInterval(timer1);
+           numColor2.style.backgroundColor='green'
+        numColor1.style.backgroundColor='red'
+        }
+          
+        },1000)
+
+        numColor2.style.backgroundColor='rgb(150,150,150)'
+        numColor1.style.backgroundColor='rgb(100,100,100)'
+      }
+
+
+          if(now==='two'){
+           if (timer1) clearInterval(timer1);
+
+           timer2 =  setInterval(()=>{
+            if(now==="two"){
+              two-=1
+              time2.textContent=two
+          }
+          if(two===0){
+           if (timer2) clearInterval(timer2);
+        }
+        },1000)
+        
+        numColor2.style.backgroundColor='rgb(100,100,100'
+        numColor1.style.backgroundColor='rgb(150,150,150)'
+      }
+        
+
+          /*  setInterval(()=>{
+              if(now==="one"){
+              one-=1
+              time1.textContent=one
+            } else {
+                  two-=1
+              time2.textContent=two
+              }
+
+          },1000)
+          */
+
+           
+          
+        })
+
+
+        const stopB = document.querySelector('.stop')
+
+        const realod = document.querySelector('.realod')
+
+        realod.addEventListener('click',()=>{
+             if (timer2) clearInterval(timer2);
+              if (timer1) clearInterval(timer1);
+
+
+          now = "two"
+          one=60
+          two=60
+          time1.textContent='1:00'
+          time2.textContent="1:00"
+          numColor2.style.backgroundColor='rgb(150,150,150)'
+        numColor1.style.backgroundColor='rgb(150,150,150)'
+
+        })
+
+        stopB.addEventListener('click',()=>{
+           if (timer2) clearInterval(timer2);
+              if (timer1) clearInterval(timer1);
+              if(now==='one'){
+                 now='two'
+              }else{
+                now='one'
+              }
+        })
+      </script>
+    </body>
+  </head>
+</html>
